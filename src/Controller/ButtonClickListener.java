@@ -8,10 +8,8 @@ import java.awt.event.ActionListener;
 
 
 public class ButtonClickListener implements ActionListener {
-    private JTextArea displayArea;
-    private int num1;
-    private int num2;
-    private String sign;
+    private final JTextArea displayArea;
+
 
     public ButtonClickListener(JTextArea displayArea) {
         this.displayArea = displayArea;
@@ -21,38 +19,36 @@ public class ButtonClickListener implements ActionListener {
         JButton clickedButton = (JButton) e.getSource();
         String buttonText = clickedButton.getText();
 
+        switch (buttonText) {
+            case "C":
+                displayArea.setText("");
 
-        if (buttonText.equals("C")) {
-            displayArea.setText("");
-            num1 = 0;
-            num2 = 0;
+                break;
+            case "+":
+            case "-":
+            case "/":
+            case "*":
+                displayArea.append("\n" + buttonText + "\n");
+                break;
+            case "=":
+                Equal();
+                break;
+            default:
+                displayArea.append(buttonText);
+                break;
         }
-        else if (buttonText.equals("+")) {
-            displayArea.append("\n+\n");
-            sign = buttonText;
-        }
-        else if (buttonText.equals("-")) {
-            displayArea.append("\n-\n");
-        }
-        else if (buttonText.equals("*")) {
-            displayArea.append("\n*\n");
-        }
-        else if (buttonText.equals("/")) {
-            displayArea.append("\n/\n");
-        }
-        else if (buttonText.equals("=")) {
-            String[] parts = displayArea.getText().split("\n");
-            String firstNumber = parts[0].trim();
-            String secondNumber = parts[2].trim();
-            String operator = parts[1].trim();
-            num1 = Integer.parseInt(firstNumber.trim());
-            num2 = Integer.parseInt(secondNumber);
-            sign = operator;
-            displayArea.setText("");
-            String s = CalculatorModel.calculate(num1, num2, sign);
-            displayArea.append(num1 + sign + num2 + "=" + s);
-        } else {
-            displayArea.append(buttonText);
-        }
+    }
+
+    private void Equal(){
+        String[] parts = displayArea.getText().split("\n");
+
+        String firstNumber = parts[0].trim();
+        String secondNumber = parts[2].trim();
+        String operator = parts[1].trim();
+
+
+        displayArea.setText("");
+        String s = CalculatorModel.calculate(Integer.parseInt(firstNumber), Integer.parseInt(secondNumber), operator);
+        displayArea.append(firstNumber + operator + secondNumber + "=" + s);
     }
 }
