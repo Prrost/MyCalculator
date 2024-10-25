@@ -19,10 +19,10 @@ public class ButtonClickListener implements ActionListener {
         JButton clickedButton = (JButton) e.getSource();
         String buttonText = clickedButton.getText();
 
+        //switch check which button is clicked
         switch (buttonText) {
             case "C":
                 displayArea.setText("");
-
                 break;
             case "+":
             case "-":
@@ -39,6 +39,9 @@ public class ButtonClickListener implements ActionListener {
         }
     }
 
+    //Equal divides input on three parts:
+    //firstNumber, secondNumber and operator
+    //they used to calculate the answer using "calculate" function from Model
     private void Equal(){
         String[] parts = displayArea.getText().split("\n");
 

@@ -6,10 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CalculatorView extends JFrame {
-    private JTextArea displayArea;
-    private JButton[] buttons;
-    private JPanel buttonPanel;
-    private JPanel mainPanel;
+    //Creating main parts of GUI
+    private final JTextArea displayArea;
+    private final JButton[] buttons;
+    private final JPanel buttonPanel;
+    private final JPanel mainPanel;
 
 
     public CalculatorView() {
@@ -18,12 +19,13 @@ public class CalculatorView extends JFrame {
         setSize(300, 500);
         setLocationRelativeTo(null);
 
+        //mainPanel is used to make Black background
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBackground(Color.BLACK);
 
+        //The calculator's "screen"
         displayArea = new JTextArea();
-//        displayArea.setEditable(false);
         displayArea.setFont(new Font("Arial", Font.PLAIN, 24));
         displayArea.setLineWrap(true);
         displayArea.setWrapStyleWord(true);
@@ -32,9 +34,9 @@ public class CalculatorView extends JFrame {
         displayArea.setRows(3);
         mainPanel.add(displayArea, BorderLayout.NORTH);
 
+        //Panel with buttons
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 4));
-//        buttonPanel.setBackground(Color.BLACK);
 
         String[] buttonLabels = {
                 "7", "8", "9", "/",
@@ -43,6 +45,7 @@ public class CalculatorView extends JFrame {
                 "C", "0", "=", "+"
         };
 
+        //Buttons created and modified using for loop
         buttons = new JButton[buttonLabels.length];
         for (int i = 0; i < buttonLabels.length; i++) {
             buttons[i] = new JButton(buttonLabels[i]);
@@ -55,13 +58,5 @@ public class CalculatorView extends JFrame {
         }
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.CENTER);
-    }
-
-    public JTextArea getDisplay() {
-        return displayArea;
-    }
-
-    public JButton[] getButtons() {
-        return buttons;
     }
 }

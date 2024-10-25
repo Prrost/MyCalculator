@@ -4,6 +4,14 @@ import javax.swing.*;
 
 public class CalculatorModel {
 
+    /**
+     * Main function of this class used to calculate the answer based on the provided operator.
+     *
+     * @param num1     the first operand
+     * @param num2     the second operand
+     * @param operator the operator that determines the arithmetic operation to perform
+     * @return the result of the calculation as a String, or an error message if the operator is not found
+     **/
     public static String calculate(double num1, double num2, String operator) {
         switch (operator) {
             case "-":
